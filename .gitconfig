@@ -1,0 +1,13 @@
+[user]
+  name = mathaaki
+  email = yama10705988.dev@gmail.com
+[color]
+  ui = auto
+[alias]
+  co = checkout
+  st = status
+  br = branch
+  fe = fetch --prune
+  rb = rebase
+  rs = reset
+  dc = diff --check
