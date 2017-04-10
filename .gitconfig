@@ -1,6 +1,3 @@
-[user]
-  name = mathaaki
-  email = yama10705988.dev@gmail.com
 [color]
   ui = auto
 [alias]
@@ -11,3 +8,7 @@
   rb = rebase
   rs = reset
   dc = diff --check
+[grep]
+  lineNumber = true
+[ghq]
+	root = ~/src

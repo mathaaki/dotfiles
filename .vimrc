@@ -5,6 +5,7 @@ set noswapfile "スワップファイルを作らない
 set autoread "編集中のファイルが変更されたら自動で読み直す
 set hidden "バッファが編集中でもその他のファイルを開けるように
 set showcmd "入力中のコマンドをステータスに表示する
+set paste
 
 "#####表示設定#####
 set number "行番号を表示する
