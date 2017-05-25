@@ -1,4 +1,3 @@
-source ~/.zsh.d/zshrc
 # Emacs ライクな操作を有効にする（文字入力中に Ctrl-F,B でカーソル移動など）
 # Vi ライクな操作が好みであれば `bindkey -v` とする
 bindkey -e
@@ -55,24 +54,28 @@ alias rc="rails c"
 alias gg="git grep"
 alias -g B='`git branch -a | peco | head -n 1 | sed -e "s/^\*\s*//g"`'   
 
-function parse_git_branch {
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
-function precmd() {
-    PROMPT="\h@\u:\W\$(parse_git_branch) \$ "
-}
-function proml {
-    PS1="\h@\u:\W\$(parse_git_branch) \$ "
-}
-proml
+# vcs_infoロード    
+autoload -Uz vcs_info    
+# PROMPT変数内で変数参照する    
+setopt prompt_subst    
+
+# vcsの表示    
+zstyle ':vcs_info:*' formats '%s][* %F{green}%b%f'    
+zstyle ':vcs_info:*' actionformats '%s][* %F{green}%b%f(%F{red}%a%f)'    
+# プロンプト表示直前にvcs_info呼び出し    
+precmd() { vcs_info }    
+# プロンプト表示    
+PROMPT='[${vcs_info_msg_0_}]:%~/%f '    
 
 export GOPATH=$HOME
 PATH=$PATH:$HOME/bin:local/bin:$GOPATH
 export PATH
 
-autoload -Uz add-zsh-hock
+# cdr, add-zsh-hook を有効にする
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
-
+add-zsh-hook chpwd chpwd_recent_dirs
+ 
+# cdr の設定
 zstyle ':completion:*' recent-dirs-insert both
 zstyle ':chpwd:*' recent-dirs-max 500
 zstyle ':chpwd:*' recent-dirs-default true
