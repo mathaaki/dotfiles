@@ -1,6 +1,6 @@
 # Emacs ライクな操作を有効にする（文字入力中に Ctrl-F,B でカーソル移動など）
 # Vi ライクな操作が好みであれば `bindkey -v` とする
-bindkey -e
+bindkey -v
 
 # 自動補完を有効にする
 # コマンドの引数やパス名を途中まで入力して <Tab> を押すといい感じに補完してくれる
@@ -50,8 +50,11 @@ zstyle ':completion:*:default' menu select=1
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # User specific aliases and functions
-alias rc="rails c"
+alias rc="bundle exec rails c"
+alias rs="bundle exec rspec"
 alias gg="git grep"
+alias gp="git push origin HEAD"
+alias gpf="git push --force origin HEAD"
 alias -g B='`git branch -a | peco | head -n 1 | sed -e "s/^\*\s*//g"`'   
 
 # vcs_infoロード    
@@ -82,13 +85,14 @@ zstyle ':chpwd:*' recent-dirs-default true
 zstyle ':chpwd:*' recent-dirs-file "$HOME/.cache/shell/chpwd-recent-dirs"
 zstyle ':chpwd:*' recent-dirs-pushd true
 
-function peco-select-history() {
-    BUFFER=$(fc -l -r -n 1 | peco --query "$LBUFFER")
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
     CURSOR=$#BUFFER
-    zle redisplay
+    zle reset-prompt
 }
-zle -N peco-select-history
-bindkey '^r' peco-select-history
+
+zle -N peco-history-selection
+bindkey '^r' peco-history-selection
 
 # ### search a destination from cdr list
 function peco-get-destination-from-cdr() {
