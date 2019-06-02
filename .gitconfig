@@ -12,3 +12,6 @@
   lineNumber = true
 [ghq]
 	root = ~/src
+[user]
+	name = kasima
+	email = yama10705988.dev@gmail.com

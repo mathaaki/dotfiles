@@ -54,7 +54,7 @@ alias rc="bundle exec rails c"
 alias rs="bundle exec rspec"
 alias gg="git grep"
 alias gp="git push origin HEAD"
-alias gpf="git push --force origin HEAD"
+alias gpf="git push --force-with-lease origin HEAD"
 alias -g B='`git branch -a | peco | head -n 1 | sed -e "s/^\*\s*//g"`'   
 
 # vcs_infoロード    
@@ -114,3 +114,4 @@ function peco-cdr() {
 zle -N peco-cdr
 bindkey '^x' peco-cdr
 
+alias be="bundle exec"
