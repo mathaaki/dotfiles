@@ -8,6 +8,7 @@
   rb = rebase
   rs = reset
   dc = diff --check
+  brd = "!f () { git branch --merged | egrep -v '\\*|master|develop' | xargs git branch -d; }; f"
 [grep]
   lineNumber = true
 [ghq]
