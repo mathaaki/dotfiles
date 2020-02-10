@@ -114,4 +114,27 @@ function peco-cdr() {
 zle -N peco-cdr
 bindkey '^x' peco-cdr
 
+eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/shims:$PATH"
+export PATH="$HOME/.yarn/bin:$PATH"
+export PATH=/usr/local/bin:$PATH
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+NODEBREW_HOME=/usr/local/var/nodebrew/current
+export NODEBREW_HOME
+export NODEBREW_ROOT=/usr/local/var/nodebrew
+
+export PATH=$PATH:$NODEBREW_HOME/bin
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+export PATH="/usr/local/opt/imagemagick@6/bin:$PATH"
+export PKG_CONFIG_PATH=/usr/local/opt/imagemagick@6/lib/pkgconfig
+
 alias be="bundle exec"
+export AWS_SDK_LOAD_CONFIG=1
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+
+export DOCKER_HOST=tcp://192.168.99.100:2376
+export DOCKER_CERT_PATH=/Users/yamamotomasaki/.docker/machine/machines/dinghy
+export DOCKER_TLS_VERIFY=1
+export DOCKER_MACHINE_NAME=dinghy
+setopt nonomatch
